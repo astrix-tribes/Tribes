@@ -1,5 +1,4 @@
 import { MONAD_TESTNET, FUSE_EMBER, SUPPORTED_CHAINS, MANTA_TESTNET, CHILIZ_MAINNET } from './networks';
-import { createPublicClient, createWalletClient, http, custom, Chain, PublicClient, WalletClient } from 'viem';
 
 type ContractAddresses = {
   ROLE_MANAGER: `0x${string}`;
@@ -17,10 +16,6 @@ type ContractAddresses = {
 type ChainAddresses = {
   [key: number]: ContractAddresses;
 };
-
-// Separate caches for public and wallet clients
-const publicClientCache = new Map<number, PublicClient>();
-const walletClientCache = new Map<number, WalletClient>();
 
 // Contract Addresses by Chain
 export const CONTRACT_ADDRESSES: ChainAddresses = {
@@ -87,52 +82,13 @@ export const getContractAddresses = (chainId: number): ContractAddresses => {
 };
 
 // Get the current chain configuration
-export const getCurrentChain = (chainId: number): Chain => {
+export const getCurrentChain = (chainId: number) => {
   const chain = SUPPORTED_CHAINS.find(chain => chain.id === chainId);
   if (!chain) {
     console.warn(`Chain ${chainId} not supported, falling back to Monad Devnet`);
     return MONAD_TESTNET;
   }
   return chain;
-};
-
-export const getPublicClient = (chainId?: number): PublicClient => {
-  const chain = chainId ? getCurrentChain(chainId) : MONAD_TESTNET;
-  const cached = publicClientCache.get(chain.id);
-  
-  if (cached) {
-    return cached;
-  }
-
-  const client = createPublicClient({
-    chain,
-    transport: http(),
-    batch: {
-      multicall: true
-    }
-  });
-
-  publicClientCache.set(chain.id, client);
-  return client;
-};
-
-export const getWalletClient = (chainId?: number): WalletClient => {
-  if (!window.ethereum) throw new Error('No ethereum provider found');
-  
-  const chain = chainId ? getCurrentChain(chainId) : MONAD_TESTNET;
-  const cached = walletClientCache.get(chain.id);
-  
-  if (cached) {
-    return cached;
-  }
-
-  const client = createWalletClient({
-    chain,
-    transport: custom(window.ethereum)
-  });
-
-  walletClientCache.set(chain.id, client);
-  return client;
 };
 
 // Profile NFT Minter ABI

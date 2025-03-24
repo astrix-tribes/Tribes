@@ -1,0 +1,196 @@
+/* HomePage styles */
+
+/* Custom scrollbar for the tribes sidebar and main content area */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4b5563 #1f2937;
+}
+
+/* Background gradient */
+.bg-gradient-dark {
+  background-image: linear-gradient(to bottom right, #111827, #1f2937);
+}
+
+.bg-gradient-purple {
+  background-image: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(79, 70, 229, 0.1));
+}
+
+/* Text gradient */
+.text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-image: linear-gradient(to right, #c084fc, #a855f7);
+}
+
+/* Avatar styling */
+.avatar-glow {
+  position: relative;
+}
+
+.avatar-glow:after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #7c3aed, #4f46e5);
+  z-index: -1;
+  opacity: 0.6;
+  filter: blur(6px);
+}
+
+/* Card hover effects */
+.tribe-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.tribe-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+  border-color: rgba(124, 58, 237, 0.3);
+}
+
+/* Button animations */
+.btn-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(124, 58, 237, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+  }
+}
+
+/* Fade-in animation */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide-in animation for sidebar */
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced shadows for cards */
+.card-shadow {
+  box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.1);
+}
+
+.card-shadow:hover {
+  box-shadow: 0 8px 30px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Glass morphism effect */
+.glass-effect {
+  background: rgba(31, 41, 55, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Mobile sidebar animations */
+.sidebar {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1023px) {
+  .sidebar-hidden {
+    transform: translateX(-100%);
+  }
+
+  .content-full {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .responsive-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .responsive-padding {
+    padding: 1rem;
+  }
+  
+  .text-responsive {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .stack-on-mobile {
+    flex-direction: column;
+  }
+  
+  .hide-on-mobile {
+    display: none;
+  }
+  
+  .text-responsive {
+    font-size: 1.25rem;
+  }
+}
+
+/* Dark mode optimizations - these styles will be applied automatically in dark mode */
+@media (prefers-color-scheme: dark) {
+  .dark-mode-card {
+    background-color: rgba(31, 41, 55, 0.8);
+    border-color: rgba(55, 65, 81, 0.8);
+  }
+  
+  .dark-mode-text {
+    color: #e5e7eb;
+  }
+  
+  .dark-mode-subtle {
+    color: #9ca3af;
+  }
+} 

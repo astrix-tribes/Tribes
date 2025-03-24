@@ -78,10 +78,10 @@ export const FUSE_EMBER = defineChain({
   },
   rpcUrls: {
     default: {
-      http: ['/fuse-rpc'],
+      http: ['https://rpc.flash.fuse.io'],
     },
     public: {
-      http: ['/fuse-rpc'],
+      http: ['https://rpc.flash.fuse.io'],
     },
   },
   blockExplorers: {
